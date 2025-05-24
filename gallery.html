@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        .gallery {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .gallery img {
+            max-width: 600px;
+            max-height: 400px;
+            margin: 20px;
+            border: 2px solid #333;
+        }
+        .controls {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <h1>Image Gallery</h1>
+        <div class="controls">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        <img id="galleryImage" src="" alt="Gallery Image">
+    </div>
+
+    <script>
+        const images = [
+            'https://picsum.photos/id/10/600/400',
+            'https://picsum.photos/id/11/600/400',
+            'https://picsum.photos/id/12/600/400',
+            'https://picsum.photos/id/13/600/400',
+            'https://picsum.photos/id/14/600/400'
+        ];
+        
+        let currentIndex = 0;
+        const galleryImage = document.getElementById('galleryImage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        function showImage(index) {
+            galleryImage.src = images[index];
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+        
+        // Показать первое изображение при загрузке
+        showImage(currentIndex);
+    </script>
+</body>
+</html>
